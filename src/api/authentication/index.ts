@@ -2,7 +2,7 @@ import { appAxios } from "../appAxios";
 import { authenticationPaths as apiPaths } from "./paths";
 import { ENDPOINT_API_KEY } from "../../config/moviesAPIConfig";
 
-export const authenticationApiServices = {
+export const AuthenticationApiServices = {
    requestNewToken: async () => {
      try {
        const { data } = await  appAxios.get(`${apiPaths.request_new_token}${ENDPOINT_API_KEY}`);
@@ -19,7 +19,7 @@ export const authenticationApiServices = {
         "password": "31121995",
         "request_token": request_token
       };
-      const { data } = await  appAxios.post(`${apiPaths.user_login_with_request_token}${ENDPOINT_API_KEY}`, { params });
+      const { data } = await  appAxios.post(`${apiPaths.user_login_with_request_token}${ENDPOINT_API_KEY}`, { ...params });
       return data;
     }
     catch (error) {
