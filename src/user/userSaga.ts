@@ -10,8 +10,8 @@ function* userLoginWithSessionSaga() {
     const responseToken  = yield call(AuthenticationApiServices.requestNewToken);
     yield put(userLoginWithSessionPending());
     if(responseToken) {
-      // const { request_token } = responseToken;
-      const responseLogin  = yield call(AuthenticationApiServices.userLogin, 'asdasdasd');
+      const { request_token } = responseToken;
+      const responseLogin  = yield call(AuthenticationApiServices.userLogin, request_token);
       if(responseLogin && responseLogin.status) {
         const { expires_at, request_token } = responseLogin;
         saveToLocalStorage('expires_at', new Date(expires_at).getTime().toString());
